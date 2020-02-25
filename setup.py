@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 
 setuptools.setup(
-    name="flask-tutorial"
+    name="flaskr",
     version="0.0.1",
     author="Thom Mondeaux",
     author_email="Thommond@protonmail.com",
@@ -14,8 +14,11 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
-    install_requires=[],
-    extras_require=[],
+    install_requires=[
+        'flask',
+    ],
+    include_package_data=True,
+    zip_safe=False,
     tests_require=['pytest'],
     python_requires='>=3.6',
 )
