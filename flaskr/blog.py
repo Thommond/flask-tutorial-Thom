@@ -20,6 +20,13 @@ def index():
     return render_template('blog/index.html', posts=posts)
 
 
+@bp.route('/<int:id>/full', methods=('GET', 'POST'))
+def full(id):
+    post = get_post_public(id)
+
+    return render_template('blog/full.html', post=post)
+
+
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
@@ -59,6 +66,20 @@ def get_post(id, check_author=True):
 
     if check_author and post['author_id'] != g.user['id']:
         abort(403)
+
+    return post
+
+
+def get_post_public(id, check_author=True):
+    post = get_db().execute(
+        'SELECT p.id, title, body, created, author_id, username'
+        ' FROM post p JOIN user u ON p.author_id = u.id'
+        ' WHERE p.id = ?',
+        (id,)
+    ).fetchone()
+
+    if post is None:
+        abort(404, "Post id {0} doesn't exist.".format(id))
 
     return post
 
