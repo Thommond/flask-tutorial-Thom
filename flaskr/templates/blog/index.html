@@ -1,15 +1,23 @@
-{% extends 'base.html' %}
 
+<!--is a child of base.html-->
+{% extends 'base.html' %}
+<!-- Is the header -->
 {% block header %}
+
   <h1>{% block title %}Posts{% endblock %}</h1>
-  {% if g.user %}
+
+  {% if g.user %}<!--only if user is login-->
+
     <a class="action" href="{{ url_for('blog.create') }}">New</a>
-  {% endif %}
-{% endblock %}
+
+  {% endif %}<!--end of if-->
+  <!--<button type="button" name="searchBar" onclick='searched_title()'>Search</button>-->
+
+{% endblock %}<!--End of header-->
 
 {% block content %}
-  {% for post in posts %}
-    <article class="post" >
+  {% for post in posts %}<!--for all the posts in the post tb-->
+  <article class="post" >
       <header>
         <div>
           <h1>{{ post['title'] }}</h1>
@@ -23,6 +31,7 @@
     </article>
     {% if not loop.last %}
       <hr>
+
     {% endif %}
-    {% endfor %}
+  {% endfor %}<!--end of the for loop-->
 {% endblock %}

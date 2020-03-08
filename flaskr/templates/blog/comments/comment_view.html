@@ -1,0 +1,15 @@
+{% extends 'full.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Comment{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="comment">
+    <div class="about">by {{ comment['username'] }} on {{ comment['created'].strftime('%Y-%m-%d') }}</div>
+    <label for="body">Body</label>
+    <textarea name="body" id="comment_body">{{ request.form['commentCreated'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+ 
+{% endblock %}

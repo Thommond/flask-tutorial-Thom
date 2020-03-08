@@ -1,7 +1,8 @@
+from flaskr.db import get_db
+import pytest
 import sqlite3
 
-import pytest
-from flaskr.db import get_db
+717 - 342 - 8269
 
 
 def test_get_close_db(app):
